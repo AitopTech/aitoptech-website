@@ -1,0 +1,191 @@
+{{ partial "header.html" . }}
+
+{{ partial "sidebar.html" . }}
+
+{{ partial "content_header.html" . }}
+
+<body class="page-body">
+    <main role="main" class="main-content flex-fill">
+        
+        <div class="header-big post-top css-img mb-4" id="search-bg" style="margin-left: -180px; margin-right: 0; width: calc(100% + 180px); padding-top: 80px; padding-bottom: 110px;">
+            <div class="s-search">
+                <div class="products-banner-content mx-auto text-center">
+                    <h1 class="text-white mb-3" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">企业级数字化解决方案</h1>
+                    <p class="text-white" style="text-shadow: 0 1px 5px rgba(0,0,0,0.4); font-size: 1.1em; max-width: 900px; margin: 0 auto; opacity: 0.95;">专注AI智能、数据管理与系统集成，为交通、能源、市政等行业提供全方位数字化转型服务</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid px-4" style="margin-left: -180px; margin-right: 0; width: calc(100% + 180px);">
+            <div class="products-grid">
+                {{ .Content | safeHTML }}
+            </div>
+            
+            <div class="contact-hint-wrapper">
+                <div class="contact-hint" onclick="showContactModal()">
+                    更多案例及解决方案，请联系 <span class="arrow">》》</span>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <script>
+    $(document).ready(function() {
+        $('.navbar-menu a:not(.dropdown-item)').hover(
+            function() {
+                $(this).css('color', '#ff9800');
+            },
+            function() {
+                $(this).css('color', '');
+            }
+        );
+        
+        $('.navbar-nav > li > a').hover(
+            function() {
+                $(this).css('color', '#ff9800');
+            },
+            function() {
+                $(this).css('color', '');
+            }
+        );
+    });
+    </script>
+
+    <style>
+        #search-bg {
+            background-image: url('/assets/images/bg-dna.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        
+        .products-banner-content {
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .products-banner-content h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffffff !important;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 40px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .contact-hint-wrapper {
+            max-width: 1400px;
+            margin: 0 auto 0 auto;
+            text-align: right;
+        }
+        
+        .contact-hint {
+            display: inline-block;
+            font-size: 1.2em;
+            color: #2196F3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .contact-hint:hover {
+            color: #1976D2;
+        }
+        
+        .contact-hint .arrow {
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-hint:hover .arrow {
+            transform: translateX(5px);
+        }
+        
+        .product-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-icon {
+            margin-bottom: 18px;
+        }
+        
+        .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6ab04c, #7ed6df);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(106, 176, 76, 0.3);
+        }
+        
+        .product-card h3 {
+            margin: 0 0 14px 0;
+            color: #333333;
+            font-size: 1.35em;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        .product-card p {
+            margin: 0;
+            color: #666666;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-banner-content h1 {
+                font-size: 1.8em;
+            }
+            
+            .products-banner-content p {
+                font-size: 1em !important;
+            }
+            
+            .contact-hint-wrapper {
+                text-align: center;
+            }
+            
+            .contact-hint {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+
+{{ partial "content_footer.html" . }}
+
+{{ partial "modal_search.html" . }}
+
+{{ partial "footer.html" . }}

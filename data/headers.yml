@@ -1,0 +1,15 @@
+- item: 首页
+  icon: fa fa-home
+  link: "/"
+
+- item: 产品案例
+  icon: fa fa-box
+  link: "/products/"
+
+- item: 公司简介
+  icon: fa fa-building
+  link: "/company/"
+
+- item: 联系我们
+  icon: fa fa-envelope
+  link: "/contact/"

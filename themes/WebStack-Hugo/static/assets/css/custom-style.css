@@ -1,0 +1,187 @@
+/*导航 Logo 图标裁剪边角*/
+.url-card .url-img > img {
+    border-radius: 20%;
+}
+
+/* 首页卡片移除向右箭头 */
+.url-card .url-body .togo {
+    display: none !important;
+}
+
+.url-card .url-body a.togo {
+    display: none !important;
+}
+
+/* 底部版权信息居中 */
+footer.main-footer .footer-text {
+    text-align: center !important;
+}
+
+/* FAQ统一大卡片样式 - 与关于艾拓科技一致 */
+.about-company-card .faq-item {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.about-company-card .faq-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.about-company-card .faq-item h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.about-company-card .faq-item p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.about-company-card .faq-item p:last-child {
+    margin-bottom: 0;
+}
+
+.about-company-card .faq-item strong {
+    color: #333333;
+    font-weight: 600;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .about-company-card .faq-item h3 {
+        font-size: 18px;
+    }
+    
+    .about-company-card .faq-item p {
+        font-size: 14px;
+    }
+}
+
+/* 侧边栏菜单底部留出空间,确保可以滚动到底部菜单 */
+.sidebar-menu.flex-fill {
+    padding-bottom: 100px !important;
+}
+
+/* 确保底部菜单区域可以点击 */
+.border-top.py-2.border-color {
+    position: relative !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+}
+
+.flex-bottom {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.flex-bottom a {
+    position: relative !important;
+    z-index: 3 !important;
+    pointer-events: auto !important;
+}
+
+/* 移动端侧边栏弹出时,背景遮罩透明 */
+@media (max-width: 768px) {
+    .modal-backdrop {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        opacity: 0 !important;
+    }
+    
+    .modal-open {
+        overflow: auto !important;
+        padding-right: 0 !important;
+    }
+}
+
+/* 锚点偏移 - 防止被顶部菜单遮挡 */
+[id]::before {
+    content: '';
+    display: block;
+    height: 130px;
+    margin-top: -130px;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/*修复侧边栏收起时底部菜单弹出位置*/
+.mini-sidebar .flex-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 60px;
+}
+
+.mini-sidebar .flex-bottom ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mini-sidebar .flex-bottom .sidebar-item {
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mini-sidebar .flex-bottom .sidebar-item > a {
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mini-sidebar .flex-bottom .sidebar-item > a i {
+    margin-right: 0 !important;
+    font-size: 18px;
+}
+
+.mini-sidebar .flex-bottom .sidebar-item > a span {
+    display: none;
+}
+
+.sidebar-popup.second {
+    left: 60px !important;
+    background: #151618;
+    border-radius: 5px;
+    overflow: hidden;
+    min-width: 100px;
+    position: fixed !important;
+    z-index: 9999;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.sidebar-popup.second .sidebar-item > a {
+    color: #ffffff !important;
+    padding: 8px 16px;
+    display: block;
+    white-space: nowrap;
+}
+
+.sidebar-popup.second .sidebar-item > a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-popup.second .sidebar-item > a i {
+    display: none;
+}
+
+.sidebar-popup.second .sidebar-item > a span {
+    margin-left: 0 !important;
+}

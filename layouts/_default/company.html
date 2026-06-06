@@ -1,0 +1,407 @@
+{{ partial "header.html" . }}
+
+{{ partial "sidebar.html" . }}
+
+{{ partial "content_header.html" . }}
+
+<body class="page-body">
+    <main role="main" class="main-content flex-fill">
+        
+        <div class="header-big post-top css-img mb-4" id="search-bg" style="margin-left: -180px; margin-right: 0; width: calc(100% + 180px); padding-top: 80px; padding-bottom: 110px;">
+            <div class="s-search">
+                <div class="page-banner-content mx-auto text-center">
+                    <h1 class="text-white mb-3" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">AI+产业升级，降本增效</h1>
+                    <p class="text-white" style="text-shadow: 0 1px 5px rgba(0,0,0,0.4); font-size: 1.1em; max-width: 900px; margin: 0 auto; opacity: 0.95;">艾拓科技（Aitop Tech），一家专注于企业级智能解决方案的高科技服务公司</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid px-4" style="margin-left: -180px; margin-right: 0; width: calc(100% + 180px);">
+            <div class="page-content">
+                {{ .Content | safeHTML }}
+            </div>
+        </div>
+        
+    </main>
+
+    <script>
+    $(document).ready(function() {
+        $('.navbar-menu a:not(.dropdown-item)').hover(
+            function() {
+                $(this).css('color', '#ff9800');
+            },
+            function() {
+                $(this).css('color', '');
+            }
+        );
+        
+        $('.navbar-nav > li > a').hover(
+            function() {
+                $(this).css('color', '#ff9800');
+            },
+            function() {
+                $(this).css('color', '');
+            }
+        );
+    });
+    </script>
+
+    <style>
+        #search-bg {
+            background-image: url('/assets/images/bg-dna.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        
+        .page-banner-content {
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .page-banner-content h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffffff !important;
+        }
+        
+        .page-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 0;
+            color: #333333;
+            line-height: 1.8;
+        }
+        
+        .about-company-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            margin-bottom: 40px;
+        }
+        
+        .about-company-card p {
+            margin: 0;
+            color: #555;
+            font-size: 1em;
+            line-height: 1.9;
+            text-align: left;
+        }
+        
+        .page-content h2 {
+            font-size: 1.6em;
+            color: #444;
+            margin: 25px 0 30px 0;
+            font-weight: 600;
+            border-left: 4px solid #6ab04c;
+            padding-left: 15px;
+        }
+        
+        .page-content p {
+            margin: 15px 0;
+            color: #555;
+            font-size: 1em;
+        }
+        
+        .page-content ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .page-content li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .page-content strong {
+            color: #333;
+        }
+        
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 35px 0;
+        }
+        
+        .business-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #6ab04c;
+        }
+        
+        .business-card h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        
+        .business-card p {
+            margin: 0;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #6ab04c 0%, #7ed6df 100%);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(106, 176, 76, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(106, 176, 76, 0.4);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .info-box {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-box h4 {
+            color: #333;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .info-box p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .info-box ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin: 6px 0;
+        }
+        
+        /* 横向时间轴样式 - 优化版 */
+        .timeline {
+            position: relative;
+            padding: 0;
+            margin: 35px 0 35px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #6ab04c, #7ed6df, #6ab04c);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(106, 176, 76, 0.3);
+        }
+        
+        .timeline-wrapper {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            gap: 15px;
+        }
+        
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            text-align: center;
+            min-width: 0;
+        }
+        
+        .timeline-year {
+            position: relative;
+            z-index: 2;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6ab04c, #7ed6df);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.1em;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(106, 176, 76, 0.4), 0 0 0 5px rgba(255, 255, 255, 0.8);
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-year {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(106, 176, 76, 0.5), 0 0 0 6px rgba(255, 255, 255, 0.9);
+        }
+        
+        .timeline-content {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 15px 12px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #6ab04c;
+        }
+        
+        .timeline-content strong {
+            color: #333;
+            font-size: 0.95em;
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .timeline-content p {
+            margin: 0;
+            color: #666;
+            font-size: 0.78em;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .timeline-content p {
+                font-size: 0.75em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-banner-content h1 {
+                font-size: 1.8em;
+            }
+            
+            .page-banner-content p {
+                font-size: 1em !important;
+            }
+            
+            .page-content {
+                padding: 25px 0;
+            }
+            
+            .about-company-card {
+                padding: 25px 20px;
+            }
+            
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* 移动端改为竖向时间轴 */
+            .timeline {
+                padding: 20px 0;
+                margin: 35px 0;
+            }
+            
+            .timeline::before {
+                top: 0;
+                left: 30px;
+                right: auto;
+                width: 4px;
+                height: 100%;
+            }
+            
+            .timeline-wrapper {
+                flex-direction: column;
+            }
+            
+            .timeline-item {
+                text-align: left;
+                padding-left: 80px;
+                margin-bottom: 30px;
+                min-width: auto;
+            }
+            
+            .timeline-year {
+                position: absolute;
+                left: 0;
+                top: 0;
+                margin: 0;
+                width: 60px;
+                height: 60px;
+                font-size: 1em;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+                margin-top: 0;
+            }
+            
+            .timeline-content p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+
+{{ partial "content_footer.html" . }}
+
+{{ partial "modal_search.html" . }}
+
+{{ partial "footer.html" . }}

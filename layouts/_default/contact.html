@@ -1,0 +1,337 @@
+{{ partial "header.html" . }}
+
+{{ partial "sidebar.html" . }}
+
+{{ partial "content_header.html" . }}
+
+<body class="page-body">
+    <main role="main" class="main-content flex-fill">
+        
+        <div class="header-big post-top css-img mb-4" id="search-bg" style="margin-left: -180px; margin-right: 0; width: calc(100% + 180px); padding-top: 80px; padding-bottom: 110px;">
+            <div class="s-search">
+                <div class="page-banner-content mx-auto text-center">
+                    <h1 class="text-white mb-3" style="text-shadow: 0 2px 10px rgba(0,0,0,0.5);">客户至上，科技赋能</h1>
+                    <p class="text-white" style="text-shadow: 0 1px 5px rgba(0,0,0,0.4); font-size: 1.1em; max-width: 900px; margin: 0 auto; opacity: 0.95;">专业、热情、耐心，服务好每一位客户</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid px-4" style="margin-left: -180px; margin-right: 0; width: calc(100% + 180px);">
+            <div class="page-content">
+                {{ .Content | safeHTML }}
+            </div>
+        </div>
+        
+    </main>
+
+    <script>
+    $(document).ready(function() {
+        $('.navbar-menu a:not(.dropdown-item)').hover(
+            function() {
+                $(this).css('color', '#ff9800');
+            },
+            function() {
+                $(this).css('color', '');
+            }
+        );
+        
+        $('.navbar-nav > li > a').hover(
+            function() {
+                $(this).css('color', '#ff9800');
+            },
+            function() {
+                $(this).css('color', '');
+            }
+        );
+    });
+    </script>
+
+    <style>
+        #search-bg {
+            background-image: url('/assets/images/bg-dna.jpg') !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+        
+        .page-banner-content {
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        
+        .page-banner-content h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #ffffff !important;
+        }
+        
+        .page-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 0;
+            color: #333333;
+            line-height: 1.8;
+        }
+        
+        .page-content h1 {
+            font-size: 2em;
+            color: #333;
+            margin: 0 0 20px 0;
+            font-weight: 600;
+        }
+        
+        .page-content h2 {
+            font-size: 1.6em;
+            color: #444;
+            margin: 25px 0 30px 0;
+            font-weight: 600;
+            border-left: 4px solid #6ab04c;
+            padding-left: 15px;
+        }
+        
+        .page-content p {
+            margin: 15px 0;
+            color: #555;
+            font-size: 1em;
+        }
+        
+        .page-content ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        
+        .page-content li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .page-content strong {
+            color: #333;
+        }
+        
+        /* 整合的联系方式主卡片 */
+        .contact-main-card {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 35px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            margin: 35px 0;
+        }
+        
+        .contact-info-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .contact-intro {
+            margin: 0 0 25px 0 !important;
+            color: #555;
+            font-size: 1em;
+            line-height: 1.8;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+        
+        .contact-info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contact-icon {
+            font-size: 1.8em;
+            min-width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6ab04c, #7ed6df);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(106, 176, 76, 0.3);
+        }
+        
+        .contact-detail h4 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .contact-detail p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .contact-qr-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e8e8e8;
+            height: 100%;
+        }
+        
+        .contact-qr-right h4 {
+            margin: 0 0 12px 0;
+            color: #333;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .contact-qr-right p {
+            margin: 0 0 15px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        /* 合作优势网格 */
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .advantage-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 28px 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #6ab04c;
+        }
+        
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6ab04c, #7ed6df);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            margin: 0 auto 18px;
+            box-shadow: 0 4px 12px rgba(106, 176, 76, 0.3);
+        }
+        
+        .advantage-card h4 {
+            color: #333;
+            margin: 0 0 12px 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .advantage-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.7;
+        }
+        
+        /* 原有样式 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .info-box {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-box h4 {
+            color: #333;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .info-box p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .info-box ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .info-box li {
+            margin: 6px 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .advantages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-banner-content h1 {
+                font-size: 1.8em;
+            }
+            
+            .page-banner-content p {
+                font-size: 1em !important;
+            }
+            
+            .page-content {
+                padding: 25px 0;
+            }
+            
+            .contact-main-card {
+                grid-template-columns: 1fr;
+                padding: 25px 20px;
+            }
+            
+            .contact-qr-right {
+                margin-top: 10px;
+                height: auto;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+{{ partial "content_footer.html" . }}
+
+{{ partial "modal_search.html" . }}
+
+{{ partial "footer.html" . }}

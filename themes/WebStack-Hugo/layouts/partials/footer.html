@@ -1,0 +1,434 @@
+<script type='text/javascript' src='{{ absURL "assets/js/jquery.ui.touch-punch.min-0.2.2.js" }}' id='jqueryui-touch-js'></script>
+<script type='text/javascript' src='{{ absURL "assets/js/clipboard.min-5.6.2.js" }}' id='clipboard-js'></script>
+<script type='text/javascript' src='{{ absURL "assets/js/tooltip-extend.js" }}' id='iplaycode-nav-js'></script>
+<script type='text/javascript' id='popper-js-extra'>
+/* <![CDATA[ */
+var theme = {"ajaxurl":"","addico":"https:\/\/nav.baidu.cn\/wp-content\/themes\/onenav\/images\/add.png","order":"asc","formpostion":"top","defaultclass":"io-grey-mode","isCustomize":"1","icourl":"","icopng":".png","urlformat":"1","customizemax":"10","newWindow":"0","lazyload":"1","minNav":"1","loading":"1","hotWords":"baidu","classColumns":" col-sm-6 col-md-4 col-xl-5a col-xxl-6a ","apikey":"TWpBeU1UVTNOekk1TWpVMEIvZ1M2bFVIQllUMmxsV1dZelkxQTVPVzB3UW04eldGQmxhM3BNWW14bVNtWk4="};
+/* ]]> */
+</script>
+<script type='text/javascript' src='{{ absURL "assets/js/popper.min.js" }}' id='popper-js'></script>
+<script type='text/javascript' src='{{ absURL "assets/js/bootstrap.min-4.3.1.js" }}' id='bootstrap-js'></script>
+<script type='text/javascript' src='{{ absURL "assets/js/theia-sticky-sidebar-1.5.0.js" }}' id='sidebar-js'></script>
+<script type='text/javascript' src='{{ absURL "assets/js/lazyload.min-12.4.0.js" }}' id='lazyload-js'></script>
+
+{{ if $.Site.Params.expandSidebar }}
+<script type='text/javascript' src='{{ absURL "assets/js/app-anim.js" }}' id='appanim-js'></script>
+{{ else }}
+<script type='text/javascript' src='{{ absURL "assets/js/app-mini.js" }}' id='appmini-js'></script>
+{{ end }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        var siteWelcome = $('#loading');
+        siteWelcome.addClass('close');
+        setTimeout(function() {
+            siteWelcome.remove();
+        }, 600);
+    });
+</script>
+<script>        
+    $(document).ready(function(){
+        setTimeout(function () {
+            if ($('a.smooth[href="' + window.location.hash + '"]')[0]) {
+                $('a.smooth[href="' + window.location.hash + '"]').click();
+            }else if (window.location.hash != '') {
+                // 页面加载后直接滚动到正确位置，避免闪烁
+                var hashTarget = $(window.location.hash);
+                if (hashTarget.length) {
+                    var offsetTop = hashTarget.offset().top;
+                    // 友情链接特殊处理
+                    if (window.location.hash === '#friendlink') {
+                        offsetTop = offsetTop - 70;
+                    } else {
+                        offsetTop = offsetTop - 130;
+                    }
+                    $("html, body").scrollTop(offsetTop);
+                }
+            }
+        }, 100);
+        
+        $(document).on('click','a.sidebar-link',function(ev) {
+            ev.preventDefault();
+            var target = $(this).data('target');
+            var currentPath = window.location.pathname;
+            
+            if (currentPath === '/' || currentPath === '') {
+                if($('#sidebar').hasClass('show')){
+                    $('#sidebar').modal('toggle');
+                }
+                
+                $("html, body").animate({
+                    scrollTop: $(target).offset().top - 130
+                }, {
+                    duration: 600,
+                    easing: "swing"
+                });
+                
+                var menu = $("a" + target);
+                if(menu.length) {
+                    menu.click();
+                    toTarget(menu.parent().parent(), true, true);
+                }
+            } else {
+                window.location.href = '/' + target;
+            }
+        });
+        
+        $(document).on('click','a.smooth',function(ev) {
+            ev.preventDefault();
+            var target = $(this).data('target') || $(this).attr('href');
+            var currentPath = window.location.pathname;
+            
+            if (currentPath !== '/' && currentPath !== '') {
+                window.location.href = '/' + target;
+                return;
+            }
+            
+            if($('#sidebar').hasClass('show') && !$(this).hasClass('change-href')){
+                $('#sidebar').modal('toggle');
+            }
+            
+            // 计算滚动位置，友情链接特殊处理
+            var targetElement = $(target);
+            var offsetTop = targetElement.offset().top;
+            
+            if (target === '#friendlink') {
+                offsetTop = offsetTop - 70; // 友情链接滚动偏移
+            } else {
+                offsetTop = offsetTop - 130; // 其他锚点滚动偏移
+            }
+            
+            $("html, body").animate({
+                scrollTop: offsetTop
+            }, {
+                duration: 600,
+                easing: "swing"
+            });
+            
+            if($(this).hasClass('go-search-btn')){
+                $('#search-text').focus();
+            }
+            if(!$(this).hasClass('change-href')){
+                var menu =  $("a" + target);
+                menu.click();
+                toTarget(menu.parent().parent(),true,true);
+            }
+        });
+        $(document).on('click','a.tab-noajax',function(ev) {
+            var url = $(this).data('link');
+            if(url)
+                $(this).parents('.d-flex.flex-fill.flex-tab').children('.btn-move.tab-move').show().attr('href', url);
+            else
+                $(this).parents('.d-flex.flex-fill.flex-tab').children('.btn-move.tab-move').hide();
+        });
+        
+    });
+</script>
+
+<script>
+//夜间(日间)模式
+(function(){
+    if(document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") === ''){
+        if(new Date().getHours() > 22 || new Date().getHours() < 6){
+            document.body.classList.remove('io-black-mode');
+            document.body.classList.add('io-grey-mode');
+            document.cookie = "night=1;path=/";
+            console.log('夜间模式开启');
+        }else{
+            document.body.classList.remove('night');
+            document.cookie = "night=0;path=/";
+            console.log('夜间模式关闭');
+        }
+    }else{
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+        if(night == '0'){
+            document.body.classList.remove('night');
+        }else if(night == '1'){
+            document.body.classList.add('night');
+        }
+    }
+})();
+//夜间(日间)模式切换
+$("#search-bg").css("background-image", "url({{ $.Site.Params.images.searchImageL }})");   //默认浅色背景
+function switchNightMode(){
+    var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '0';
+    if(night == '0'){
+    $("#search-bg").css("background-image", "url({{ $.Site.Params.images.searchImageL }})");
+        document.body.classList.remove('io-grey-mode');
+        document.body.classList.add('io-black-mode');
+        document.cookie = "night=1;path=/"
+        console.log(' ');
+        $(".switch-dark-mode").attr("data-original-title","日间模式");
+        $(".mode-ico").removeClass("icon-night");
+        $(".mode-ico").addClass("icon-light");
+    }else{
+    $("#search-bg").css("background-image", "url({{ $.Site.Params.images.searchImageD }})")
+        document.body.classList.remove('io-black-mode');
+        document.body.classList.add('io-grey-mode');
+        document.cookie = "night=0;path=/"
+        console.log(' ');
+        $(".switch-dark-mode").attr("data-original-title","夜间模式");
+        $(".mode-ico").removeClass("icon-light");
+        $(".mode-ico").addClass("icon-night");
+    }
+}
+
+// 全局联系弹窗功能
+function showContactModal() {
+    if (document.getElementById('globalContactModal')) {
+        document.getElementById('globalContactModal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeContactModal() {
+    if (document.getElementById('globalContactModal')) {
+        document.getElementById('globalContactModal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// 点击弹窗外部关闭
+document.addEventListener('click', function(e) {
+    var modal = document.getElementById('globalContactModal');
+    if (modal && e.target === modal) {
+        closeContactModal();
+    }
+});
+
+// ESC键关闭弹窗
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeContactModal();
+    }
+});
+</script>
+
+<div class="modal-contact" id="globalContactModal">
+    <div class="modal-contact-content">
+        <span class="modal-close" onclick="closeContactModal()">&times;</span>
+        <h3 class="modal-title">联系我们</h3>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-label">姓名：</span>
+                <span class="contact-value">朱天杰</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">手机号：</span>
+                <span class="contact-value">13092077990</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">邮箱：</span>
+                <span class="contact-value">neo.zhu@aitoptech.cn</span>
+            </div>
+            <div class="contact-item contact-qrcode">
+                <span class="contact-label">微信二维码：</span>
+                <div class="qrcode-container">
+                    <img src="/assets/images/contactperson.png" alt="微信二维码" class="contact-qrcode-img" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.modal-contact {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-contact-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 35px 40px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-title {
+    margin: 0 0 25px 0;
+    color: #333;
+    font-size: 1.8em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-label {
+    color: #666;
+    font-size: 1em;
+    font-weight: 500;
+    min-width: 90px;
+    flex-shrink: 0;
+}
+
+.contact-value {
+    color: #333;
+    font-size: 1em;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+.contact-qrcode {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.contact-qrcode .contact-label {
+    margin-bottom: 12px;
+    min-width: auto;
+}
+
+.qrcode-container {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+}
+
+.contact-qrcode-img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .modal-contact-content {
+        padding: 25px 20px;
+    }
+    
+    .contact-qrcode-img {
+        width: 160px;
+        height: 160px;
+    }
+}
+</style>
+
+<!-- GEO优化: Schema.org 结构化数据 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "艾拓科技 Aitop Tech",
+  "url": "https://www.aitoptech.cn",
+  "logo": "https://www.aitoptech.cn/assets/images/logo@2x.png",
+  "description": "艾拓科技是一家以技术赋能产业升级为核心使命的创新型科技企业,提供人工智能、物联网、大数据等前沿技术的定制化解决方案",
+  "foundingDate": "2015",
+  "founders": [{
+    "@type": "Person",
+    "name": "艾拓科技团队"
+  }],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "青山湖街道大园路1188号浙江国科智创园",
+    "addressLocality": "杭州市",
+    "addressRegion": "浙江省",
+    "postalCode": "311300",
+    "addressCountry": "CN"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+86-13092077990",
+    "contactType": "customer service",
+    "email": "neo.zhu@aitoptech.cn",
+    "availableLanguage": ["Chinese", "English"]
+  },
+  "sameAs": [],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "AI解决方案",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "智能生产管理集成",
+          "description": "库存管理、采购管理、CRM、生产管理、质量监控等智能制造解决方案"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "智能交通管理系统",
+          "description": "船货调度、客流量检测、航运调度、车辆调度系统等智慧交通解决方案"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "数字健康解决方案",
+          "description": "健康数据监控系统、软硬集成检测仪器的数字化健康解决方案"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "基础建设智能运维",
+          "description": "振动检测、沉降检测、变形检测等建筑安全监测解决方案"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+</body>
+</html>
