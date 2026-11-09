@@ -1,11 +1,14 @@
 baseURL               = "https://aitoptech.github.io/aitoptech-website/"
 languageCode          = "zh-CN"
-title                 = "Aitop Tech"
+title                 = "艾拓科技"
 theme                 = "WebStack-Hugo"
 preserveTaxonomyNames = true
 disablePathToLower    = true
 hasCJKLanguage        = true
 publishDir            = "public"
+
+# 防止taxonomy报错
+ignoreErrors = ["error-output-taxonomy"]
 
 [params]
     author        = "shenweiyan"
@@ -65,3 +68,4 @@ publishDir            = "public"
     page = ["HTML"]
     section = ["HTML"]
     taxonomy = ["HTML"]
+

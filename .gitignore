@@ -18,3 +18,6 @@ hugo.exe
 
 # PDF文档
 *.pdf
+
+# WorkBuddy本地工作目录
+.workbuddy/
