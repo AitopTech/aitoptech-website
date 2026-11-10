@@ -45,7 +45,7 @@ ignoreErrors = ["error-output-taxonomy"]
     logoCollapseDark  = "assets/images/AitopTech-en.png"
     
 [params.footer]
-    copyright = '本站内容源自互联网,如有内容侵犯了你的权益,请联系删除相关内容,联系邮箱:neo.zhu@aitoptech.cn <br/>&copy; 2026 - {year} By Aitop Tech | <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2026036362号-1</a><br/>'
+    copyright = '本站内容源自互联网,如有内容侵犯了你的权益,请联系删除相关内容,联系邮箱:neo.zhu@aitoptech.cn <br/>&copy; 2026 - {year} By Aitop Tech | <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2026036362号</a><br/>'
 
 [markup.goldmark.renderer]
     unsafe = true
